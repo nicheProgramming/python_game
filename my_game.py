@@ -30,9 +30,9 @@ FPS = 20
 
 direction = "right"
 
-smallfont = pygame.font.SysFont(None, 25)
-medfont = pygame.font.SysFont(None, 50)
-largefont = pygame.font.SysFont(None, 80)
+smallfont = pygame.font.SysFont("comicsansms", 25)
+medfont = pygame.font.SysFont("comicsansms", 50)
+largefont = pygame.font.SysFont("comicsansms", 80)
 
 def pause():
     paused = True
