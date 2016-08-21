@@ -1,5 +1,4 @@
 import pygame
-import time
 import random
 
 pygame.init()
@@ -34,6 +33,7 @@ smallfont = pygame.font.SysFont("comicsansms", 25)
 medfont = pygame.font.SysFont("comicsansms", 50)
 largefont = pygame.font.SysFont("comicsansms", 80)
 
+
 def pause():
     paused = True
 
@@ -58,13 +58,12 @@ def pause():
                     pygame.quit()
                     quit()
 
-        # gameDisplay.fill(white)
         clock.tick(5)
 
 
 def score(score):
-    text = smallfont.render("Score: "+ str(score), True, black)
-    gameDisplay.blit(text, [0,0])
+    text = smallfont.render("Score: " + str(score), True, black)
+    gameDisplay.blit(text, [0, 0])
 
 
 def ranAppleGen():
@@ -114,7 +113,6 @@ def game_intro():
 
 
 def snake(block_size, snakelist):
-
     if direction == "right":
         head = pygame.transform.rotate(img, 270)
     elif direction == "left":
@@ -167,7 +165,7 @@ def gameLoop():
 
     while not gameExit:
 
-        if gameOver == True:
+        if gameOver:
             message_to_screen("Game over",
                               red,
                               y_displace=-50,
@@ -178,9 +176,7 @@ def gameLoop():
                               size="medium")
             pygame.display.update()
 
-        while gameOver == True:
-            # gameDisplay.fill(white)
-
+        while gameOver:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     gameOver = False
@@ -225,9 +221,7 @@ def gameLoop():
 
         gameDisplay.blit(appleimg, (randAppleX, randAppleY))
 
-        snakeHead = []
-        snakeHead.append(lead_x)
-        snakeHead.append(lead_y)
+        snakeHead = [lead_x, lead_y]
         snakeList.append(snakeHead)
 
         if len(snakeList) > snakeLength:
@@ -239,7 +233,7 @@ def gameLoop():
 
         snake(block_size, snakeList)
 
-        score(snakeLength-1)
+        score(snakeLength - 1)
 
         pygame.display.update()
 
@@ -252,6 +246,7 @@ def gameLoop():
 
     pygame.quit()
     quit()
+
 
 game_intro()
 gameLoop()
