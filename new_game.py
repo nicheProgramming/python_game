@@ -8,9 +8,7 @@ display_height = 600
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 
-
 pygame.display.set_caption('Tanks')
-
 
 # icon = pygame.image.load('apple.png')
 # pygame.display.set_icon(icon)
@@ -18,6 +16,7 @@ pygame.display.set_caption('Tanks')
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
+yellow = (200, 200, 0)
 green = (0, 155, 0)
 blue = (0, 0, 255)
 
@@ -27,12 +26,14 @@ smallfont = pygame.font.SysFont("comicsansms", 25)
 medfont = pygame.font.SysFont("comicsansms", 50)
 largefont = pygame.font.SysFont("comicsansms", 85)
 
+
 # img = pygame.image.load('snakehead.png')
 # appleimg = pygame.image.load('apple.png')
 
 def score(score):
     text = smallfont.render("Score: " + str(score), True, black)
     gameDisplay.blit(text, [0, 0])
+
 
 def text_objects(text, color, size):
     if size == "small":
@@ -43,6 +44,7 @@ def text_objects(text, color, size):
         textSurface = largefont.render(text, True, color)
 
     return textSurface, textSurface.get_rect()
+
 
 def message_to_screen(msg, color, y_displace=0, size="small"):
     textSurf, textRect = text_objects(msg, color, size)
@@ -76,6 +78,7 @@ def pause():
 
         clock.tick(5)
 
+
 def game_intro():
     intro = True
 
@@ -94,24 +97,18 @@ def game_intro():
                     quit()
 
         gameDisplay.fill(white)
-        message_to_screen("Welcome to Tanks!",
-                          green,
-                          -100,
-                          "large")
-        message_to_screen("The objective is to shoot and destroy",
-                          black,
-                          -30)
-        message_to_screen("the enemy tank before they destroy you.",
-                          black,
-                          10)
-        message_to_screen("The more enemies you destroy, the harder they get.",
-                          black,
-                          50)
-        message_to_screen("Press E to play, C to pause, or Q to quit",
-                          black,
-                          180)
+        message_to_screen("Welcome to Tanks!", green, -100, "large")
+        message_to_screen("The objective is to shoot and destroy", black, -30)
+        message_to_screen("the enemy tank before they destroy you.", black, 10)
+        message_to_screen("The more enemies you destroy, the harder they get.", black, 50)
+        # message_to_screen("Press E to play, C to pause, or Q to quit", black, 180)
+
+        pygame.draw.rect(gameDisplay, green, (150, 500, 100, 50))
+        pygame.draw.rect(gameDisplay, yellow, (350, 500, 100, 50))
+        pygame.draw.rect(gameDisplay, red, (550, 500, 100, 50))
 
         pygame.display.update()
+
         clock.tick(15)
 
 
@@ -169,5 +166,6 @@ def gameLoop():
 
     pygame.quit()
     quit()
+
 
 gameLoop()
